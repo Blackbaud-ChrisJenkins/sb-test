@@ -1,5 +1,7 @@
-package com.blackbaud.sb-test;
+package com.blackbaud.sbtest;
 
+import org.springframework.context.annotation.Import;
+import com.blackbaud.sbtest.servicebus.ServiceBusConfig;
 import com.blackbaud.boot.config.CommonSpringConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -11,11 +13,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.blackbaud.sb-test.core, com.blackbaud.sb-test.resources")
-public class sb-test extends CommonSpringConfig {
+@ComponentScan("com.blackbaud.sbtest.core, com.blackbaud.sbtest.resources")
+@Import(ServiceBusConfig.class)
+public class SbTest extends CommonSpringConfig {
 
     public static void main(String[] args) {
-        SpringApplication.run(sb-test.class, args);
+        SpringApplication.run(SbTest.class, args);
     }
 
 }

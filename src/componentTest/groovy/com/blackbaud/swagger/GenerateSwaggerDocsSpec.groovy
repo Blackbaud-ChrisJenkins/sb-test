@@ -1,6 +1,6 @@
 package com.blackbaud.swagger
 
-import com.blackbaud.sb-test.ComponentTest
+import com.blackbaud.sbtest.ComponentTest
 import org.springframework.beans.factory.annotation.Autowired
 import spock.lang.Specification
 

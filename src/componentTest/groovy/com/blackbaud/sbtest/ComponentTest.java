@@ -1,4 +1,4 @@
-package com.blackbaud.sb-test;
+package com.blackbaud.sbtest;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;

@@ -1,4 +1,4 @@
-package com.blackbaud.sb-test.core;
+package com.blackbaud.sbtest.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

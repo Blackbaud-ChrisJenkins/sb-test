@@ -17,9 +17,7 @@ allprojects {
     apply plugin: "blackbaud-internal"
 
     ext {
-        // used by the various gradle-templates task to determine the base service package
-        servicePackageName="com.blackbaud.sb-test"
-
+        commonAsyncServiceBusVersion = "2.+"
         groovyVersion = "2.4.7"
         lombokVersion = "1.16.18"
         spockVersion = "1.1-groovy-2.4"
@@ -38,8 +36,10 @@ allprojects {
 dependencies {
     compile "com.blackbaud:tokens-client:3.+"
     compile "com.blackbaud:common-spring-boot-rest:${commonSpringBootVersion}"
+    compile "com.blackbaud:common-async-service-bus:${commonAsyncServiceBusVersion}"
 
     sharedTestCompile "com.blackbaud:common-spring-boot-rest-test:${commonSpringBootVersion}"
+    sharedTestCompile "com.blackbaud:common-async-service-bus-test:${commonAsyncServiceBusVersion}"
     sharedTestCompile "org.codehaus.groovy:groovy-all:${groovyVersion}"
     sharedTestCompile 'cglib:cglib-nodep:2.2.2'
     sharedTestCompile 'org.objenesis:objenesis:1.3'
