@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SbtestPayload {
 
-    private String replaceme;
+    private String id;
+
+    @Builder.Default()
+    private String content = "nothing to see here";
 
 }
