@@ -33,4 +33,8 @@ public class RandomKeys {
         int index = rand.nextInt(numberOfKeys);
         return keys.get(index);
     }
+
+    public String getKeyAsString() {
+        return getKey().toString();
+    }
 }

@@ -9,8 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Component
@@ -20,28 +20,28 @@ public class SbTestProducer implements CommandLineRunner {
     @Value("${sbtest.message.count}")
     private Long messageCount;
 
-    @Value("${sbtest.message.batchsize:100}")
-    private Long batchSize;
-
     @Autowired
     private RandomKeys randomKeys;
 
     @Autowired
     JsonMessagePublisher publisher;
 
+    List<CompletableFuture> results;
+
     @Override
     public void run(String... args) throws Exception {
-        log.warn("SbTestProducer running...");
+        log.info("SbTestProducer running...");
 
-        for (int currentBatch = 0; currentBatch < messageCount/batchSize; currentBatch++) {
-            List<Object> batch = new ArrayList<>();
-
-            for (int x = 0; x < batchSize; x++) {
-                batch.add(SbtestPayload.builder().id(randomKeys.getKey().toString()).build());
-            }
-            publisher.sendBatchSync(batch);
-            log.warn("SbTestProducer sending batch {}", currentBatch);
+        for (int i = 0; i <= messageCount; i++) {
+            SbtestPayload payload = SbtestPayload.builder()
+                    .id(randomKeys.getKeyAsString())
+                    .build();
+//            results.add(publisher.sendAsync(payload));
+            publisher.sendSync(payload);
         }
-        log.warn("SbTestProducer finished sending");
+        log.info("Messages sent, awaiting results");
+//        CompletableFuture.allOf(results.toArray(new CompletableFuture[0]));
+
+        log.info("SbTestProducer finished sending");
     }
 }
